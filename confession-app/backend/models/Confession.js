@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+ 
 const confessionSchema = new mongoose.Schema({
     content: {
         type: String,
