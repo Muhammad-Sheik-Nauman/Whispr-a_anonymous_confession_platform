@@ -2,12 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-
-const Confession = require('./models/Confession'); // Import model
-
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:5173" }));
+
+
+const Confession = require('./models/Confession'); // Import model
+
+
 
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI, {
