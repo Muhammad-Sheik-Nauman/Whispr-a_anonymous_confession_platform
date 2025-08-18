@@ -1,7 +1,5 @@
-
 import React from 'react'
 import { useState } from 'react'
-
 import ConfessionForm from './ConfessionForm'
 import ConfessionList from './ConfessionList'
 
