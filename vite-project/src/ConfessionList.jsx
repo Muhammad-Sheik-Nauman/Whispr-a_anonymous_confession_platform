@@ -1,35 +1,37 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios';
 
-const ConfessionList = ({ refresh }) => {
-  const [confessions, setConfessions] = useState([]);
+const ConfessionList = ({refresh}) => {
+    const [confessions, setConfessions] = useState([]);
 
-  useEffect(() => {
-    const fetchConfessions = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/confessions");
-        setConfessions(res.data);
-      } catch (err) {
-        console.error("Error fetching confessions:", err);
-      }
-    };
-    fetchConfessions();
-  }, [refresh]); // refetch whenever refresh changes
+    useEffect(() => {
+        const fetchConfessions = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/confessions")
+                setConfessions(response.data)
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchConfessions();
+    }, [refresh])
 
-  return (
-    <div>
-      <h2>Confessions</h2>
-      {confessions.length === 0 ? (
-        <p>No confessions yet...</p>
-      ) : (
-        <ul>
-          {confessions.map((c) => (
-            <li key={c._id}>{c.content}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+
+
+    return (
+        <div>
+            {confessions.length === 0 ? (
+                <p>No confessions available</p>
+            ) : (
+                confessions.map((confession) => (
+                    <div key={confession._id}>
+                        <p>{confession.content}</p>
+                    </div>
+                ))
+            )}
+        </div>
+    );
+
 };
-
-export default ConfessionList;
+export default ConfessionList

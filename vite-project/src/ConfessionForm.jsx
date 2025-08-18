@@ -1,33 +1,30 @@
-import { useState } from "react";
-import axios from "axios";
+import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 
-const ConfessionForm = ({ onConfessionAdded }) => {
-  const [content, setContent] = useState("");
+const ConfessionForm = ({onRefresh}) => {
+    const [text, setText] = useState('')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!content.trim()) return;
+    return (
+        <>
+            <form onSubmit={async (e) => {
+                e.preventDefault();
+                try{
+                   await axios.post("http://localhost:5000/confessions",{content:text})
+                    setText("");
+                    onRefresh();
+                }catch(err){
+                    console.log(err)
+                }
+                
+            }
+            }>
+                <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                <button>submit</button>
 
-    try {
-      await axios.post("http://localhost:5000/confessions", { content });
-      setContent("");
-      onConfessionAdded(); // refresh list after submit
-    } catch (err) {
-      console.error("Error submitting confession:", err);
-    }
-  };
+            </form>
+        </>
+    )
+}
 
-  return (
-    <form onSubmit={handleSubmit} className="confession-form">
-      <textarea
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Write your confession..."
-        rows="4"
-      />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-
-export default ConfessionForm;
+export default ConfessionForm
