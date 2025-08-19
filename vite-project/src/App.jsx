@@ -26,8 +26,9 @@ useEffect(() => {
 
   return (
   <>
-    {ownerToken && <ConfessionForm ownerToken={ownerToken} onRefresh={triggerRefresh} />}
+    
     <ConfessionList ownerToken={ownerToken} refresh={refresh} />
+     {ownerToken && <ConfessionForm ownerToken={ownerToken} onRefresh={triggerRefresh} />}
   </>
 )
 
