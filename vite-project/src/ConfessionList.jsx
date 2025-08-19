@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 
-const ConfessionList = ({refresh}) => {
+const ConfessionList = ({refresh, ownerToken}) => {
     const [confessions, setConfessions] = useState([]);
 
     useEffect(() => {
@@ -30,6 +30,7 @@ const ConfessionList = ({refresh}) => {
                     </div>
                 ))
             )}
+
         </div>
     );
 

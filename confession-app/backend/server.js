@@ -25,11 +25,11 @@ mongoose.connect(process.env.MONGO_URI, {
 // Add new confession
 app.post('/confessions', async (req, res) => {
   try {
-    const { content } = req.body;
-    if (!content || content.trim() === '') {
-      return res.status(400).json({ error: 'Content is required' });
+    const { content, ownerToken } = req.body;
+    if (!content || !ownerToken || content.trim() === '') {
+      return res.status(400).json({ error: 'Content and ownerToken are required' });
     }
-    const confession = new Confession({ content });
+    const confession = new Confession({ content,ownerToken });
     await confession.save();
     res.status(201).json(confession);
   } catch (err) {
@@ -47,6 +47,31 @@ app.get('/confessions', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+
+app.delete('/confessions/:id', async (req, res) => {
+  try {
+    const { ownerToken } = req.body;
+    const { id } = req.params;
+
+    const confession = await Confession.findById(id);
+    if (!confession) {
+      return res.status(404).json({ error: 'Confession not found' });
+    }
+
+    if (confession.ownerToken !== ownerToken) {
+      return res.status(403).json({ error: 'You do not have permission to delete this confession' });
+    }
+
+    await confession.deleteOne();
+    res.json({ message: `Confession with id ${id} deleted successfully` });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
