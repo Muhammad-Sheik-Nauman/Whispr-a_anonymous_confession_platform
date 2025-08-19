@@ -41,7 +41,7 @@ app.post('/confessions', async (req, res) => {
 //Fetch all confessions
 app.get('/confessions', async (req, res) => {
     try {
-        const confessions = await Confession.find().sort({ createdAt: -1 });
+        const confessions = await Confession.find().sort({ createdAt: 1 });
         res.json(confessions);
     } catch (err) {
         res.status(500).json({ error: err.message });
