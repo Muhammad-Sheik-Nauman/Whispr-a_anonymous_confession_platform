@@ -20,9 +20,10 @@ const ConfessionForm = ({onRefresh, ownerToken}) => {
                 
             }
             }>
-                <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                <div style={{position:"fixed", bottom:0}}>
+                <input type="text" value={text} onChange={(e) => setText(e.target.value)}  />
                 <button>submit</button>
-
+</div>
             </form>
         </>
     )

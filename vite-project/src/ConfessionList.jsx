@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const ConfessionList = ({ refresh, ownerToken }) => {
@@ -9,13 +9,14 @@ const ConfessionList = ({ refresh, ownerToken }) => {
         const fetchConfessions = async () => {
             try {
                 const response = await axios.get("http://localhost:5000/confessions");
-                setConfessions(response.data);
+                setConfessions(response.data.reverse());
             } catch (err) {
                 console.log(err);
             }
         };
         fetchConfessions();
     }, [refresh]);
+
 
     const handleDelete = async (id) => {
         try {
@@ -35,14 +36,16 @@ const ConfessionList = ({ refresh, ownerToken }) => {
             console.log(err);
         }
     };
+   
 
+    
     return (
-        <div>
+        <div style={{ overflowY: 'auto', scrollBehavior: 'smooth', maxHeight: '70vh' }} >
             {confessions.length === 0 ? (
                 <p>No confessions available</p>
             ) : (
                 confessions.map((confession) => (
-                    <div key={confession._id}>
+                    <div key={confession._id} >
                         <p>{confession.content}</p>
                         <small>
                             Posted: {new Date(confession.createdAt).toLocaleString()}
