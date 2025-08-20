@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import Highlighter from "react-highlight-words";
+
 
 
 const ConfessionList = ({ refresh, ownerToken }) => {
     const [confessions, setConfessions] = useState([]);
+
+    const [search, setSearch] = useState("");
 
 
     useEffect(() => {
@@ -37,31 +41,41 @@ const ConfessionList = ({ refresh, ownerToken }) => {
             console.log(err);
         }
     };
-   
+    const filteredConfessions = confessions.filter((confession) =>
+        confession.content.toLowerCase().includes(search.toLowerCase())
+    );
 
-    
     return (
-        <div style={{ overflowY: 'auto', scrollBehavior: 'smooth', maxHeight: '70vh' }} >
-            {confessions.length === 0 ? (
-                <p>No confessions available</p>
-            ) : (
-                confessions.map((confession) => (
-                    <div key={confession._id} >
-                        <p>{confession.content}</p>
-                        <small>
-                            Posted: {new Date(confession.createdAt).toLocaleString()}
-                        </small>
+        <div>
+            <input type="search" placeholder="Search keywords..." value={search} onChange={(e) => setSearch(e.target.value)} />
+            <div style={{ overflowY: 'auto', scrollBehavior: 'smooth', maxHeight: '70vh' }} >
+                {filteredConfessions.length === 0 ? (
+                    <p>No confessions available</p>
+                ) : (
+                    filteredConfessions.map((confession) => (
+                        <div key={confession._id} >
+                            <p><Highlighter
 
-                        {confession.ownerToken === ownerToken && (
-                            <button onClick={() => handleDelete(confession._id)}>
-                                delete
-                            </button>
+                                searchWords={[search]}
+                                autoEscape={true}
+                                textToHighlight={confession.content}
+                            />
+                            </p>
+                            <small>
+                                Posted: {new Date(confession.createdAt).toLocaleString()}
+                            </small>
+
+                            {confession.ownerToken === ownerToken && (
+                                <button onClick={() => handleDelete(confession._id)}>
+                                    delete
+                                </button>
 
 
-                        )}
-                    </div>
-                ))
-            )}
+                            )}
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     );
 };
