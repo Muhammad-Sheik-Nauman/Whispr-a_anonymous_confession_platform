@@ -2,9 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 
+
 const ConfessionForm = ({onRefresh, ownerToken}) => {
     const [text, setText] = useState('')
-
+    
     return (
         <>
             <form onSubmit={async (e) => {
