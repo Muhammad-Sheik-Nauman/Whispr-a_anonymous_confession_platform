@@ -8,7 +8,7 @@ const ConfessionForm = ({onRefresh, ownerToken}) => {
     
     return (
         <>
-            <form className='fixed bottom-0 left-0 w-full bg-gray-900 p-4 flex items-center gap-2 border-t border-gray-700'
+            <form className='fixed bottom-0   w-full bg-gray-900 p-4 flex items-center  gap-2 border-t border-gray-700'
              onSubmit={async (e) => {
                 e.preventDefault();
                 try{

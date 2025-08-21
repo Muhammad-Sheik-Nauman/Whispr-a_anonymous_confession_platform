@@ -23,7 +23,7 @@ const LandingPage = () => {
         
         <button onClick={
           () => navigate('/confessions')
-        } className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-lg font-medium shadow-lg hover:scale-105 transform transition duration-300"
+        } className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-lg font-medium shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer"
         >Get Started</button>
         
 
