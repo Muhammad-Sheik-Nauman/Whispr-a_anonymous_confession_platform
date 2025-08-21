@@ -47,7 +47,7 @@ const ConfessionList = ({ refresh, ownerToken }) => {
 
     return (
         <div className=' mx-auto p-4 bg-gray-800'>
-            <input type="search" placeholder="Search keywords..." value={search} onChange={(e) => setSearch(e.target.value)} className='w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-800  placeholder-gray-400' />
+            <input type="search" placeholder="Search keywords..." value={search} onChange={(e) => setSearch(e.target.value)} className='w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-800  placeholder-gray-400' />
             <div className='overflow-y-auto scroll-behavior-smooth max-h-[70vh] space-y-4' >
                 {filteredConfessions.length === 0 ? (
                     <p className='text-gray-400 text-center'>No confessions available</p>
