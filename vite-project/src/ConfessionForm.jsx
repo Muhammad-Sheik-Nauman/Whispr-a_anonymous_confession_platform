@@ -12,8 +12,8 @@ const ConfessionForm = ({onRefresh, ownerToken}) => {
              onSubmit={async (e) => {
                 e.preventDefault();
                 try{
-                
-                   await axios.post("http://localhost:5000/confessions",{content:text, ownerToken:ownerToken})
+
+                   await axios.post("https://whispr-a-anonymous-confession-platform.onrender.com/confessions",{content:text, ownerToken:ownerToken})
                     setText("");
                     onRefresh();
                 }catch(err){

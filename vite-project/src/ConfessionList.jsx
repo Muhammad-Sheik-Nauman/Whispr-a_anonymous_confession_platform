@@ -13,7 +13,7 @@ const ConfessionList = ({ refresh, ownerToken }) => {
     useEffect(() => {
         const fetchConfessions = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/confessions");
+                const response = await axios.get("https://whispr-a-anonymous-confession-platform.onrender.com/confessions");
                 setConfessions(response.data.reverse());
             } catch (err) {
                 console.log(err);
@@ -26,7 +26,7 @@ const ConfessionList = ({ refresh, ownerToken }) => {
     const handleDelete = async (id) => {
         try {
             if (window.confirm("Are you sure you want to delete this confession?")) {
-                await axios.delete(`http://localhost:5000/confessions/${id}`, {
+                await axios.delete(`https://whispr-a-anonymous-confession-platform.onrender.com/confessions/${id}`, {
                     data: { ownerToken }
                 });
                 setConfessions((prev) =>
