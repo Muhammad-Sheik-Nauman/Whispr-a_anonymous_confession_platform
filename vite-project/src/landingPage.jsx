@@ -55,7 +55,7 @@ const LandingPage = () => {
 
             <h2 className="text-2xl font-bold mb-4">About WHISPR</h2>
             <p className="text-gray-300 leading-relaxed">
-              WHISPR, founded by Nauman, is a safe and anonymous space to share your confessions without fear of judgment. Here, you can admit your thoughts, release your emotions, and renew your mind in a supportive environment. Respect the community—spamming and misuse are highly discouraged.
+              WHISPR, developed by Nauman, is a safe and anonymous space to share your confessions without fear of judgment. Here, you can admit your thoughts, release your emotions, and renew your mind in a supportive environment. Respect the community—spamming and misuse are highly discouraged.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3">
               <div className="flex gap-5">
@@ -65,7 +65,7 @@ const LandingPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="text-blue-500 hover:text-blue-700 transition"
+                  className="text-blue-500 hover:text-blue-700 transition cursor-pointer"
                 >
                   <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 
@@ -82,7 +82,7 @@ const LandingPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Twitter/X"
-                  className="text-gray-300 hover:text-gray-400 transition"
+                  className="text-gray-300 hover:text-gray-400 transition cursor-pointer"
                 >
                   <svg className="w-7 h-7" viewBox="0 0 120 120" fill="currentColor">
                     <path d="M86.4 33.6H74.88L60 54.24 45.12 33.6H33.6L54.24 60 33.6 86.4h11.52L60 65.76 
@@ -93,8 +93,8 @@ const LandingPage = () => {
 
              
               <a
-                href="mailto:your.email@example.com"
-                className="text-white-400 hover:underline"
+                href="mailto:noumansheik07@gmail.com"
+                className="text-white-400 hover:underline cursor-pointer"
               >
                 noumansheik07@gmail.com
               </a>
