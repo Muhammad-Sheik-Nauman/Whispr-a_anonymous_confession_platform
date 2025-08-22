@@ -55,7 +55,7 @@ const LandingPage = () => {
 
             <h2 className="text-2xl font-bold mb-4">About WHISPR</h2>
             <p className="text-gray-300 leading-relaxed">
-              WHISPR, founded by Nauman, is a safe and anonymous space to share your confessions without fear of judgment. Here, you can admit your thoughts, release your emotions, and renew your mind in a supportive environment. Respect the community—spamming and misuse are not tolerated.
+              WHISPR, founded by Nauman, is a safe and anonymous space to share your confessions without fear of judgment. Here, you can admit your thoughts, release your emotions, and renew your mind in a supportive environment. Respect the community—spamming and misuse are highly discouraged.
             </p>
             <div className="mt-6 flex flex-col items-center gap-3">
               <div className="flex gap-5">
