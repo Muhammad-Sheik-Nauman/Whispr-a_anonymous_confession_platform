@@ -23,19 +23,24 @@ const LandingPage = () => {
         </button>
 
         <img
-          src="logo.png"
-          alt="Logo"
-          className="w-100 h-100  rounded-full invert"
+  src="logo.png"
+  alt="Logo"
+  className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full invert"
+/>
 
-        />
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 font-sans">
+  WHISPR
+</h1>
+        <p className="text-sm sm:text-base md:text-lg text-gray-400 uppercase tracking-widest mb-10 text-center">
+  ADMIT. RELEASE. RENEW
+</p>
 
-        <h1 className='text-5xl font-bold mb-3 font-sans '>WHISPR</h1>
-        <p className='text-gray-400 uppercase tracking-widest mb-10'>ADMIT. RELEASE. RENEW</p>
-
-        <button onClick={
-          () => navigate('/confessions')
-        } className="px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-lg font-medium shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer"
-        >Get Started</button>
+        <button
+  onClick={() => navigate('/confessions')}
+  className="px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-sm sm:text-lg font-medium shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer"
+>
+  Get Started
+</button>
 
 
       </div>
