@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://whispr-pearl-seven.vercel.app/"],
+  origin: ["http://localhost:5173", "https://whispr-by-nauman.vercel.app/"],
   methods: ["GET", "POST", "DELETE"],
   credentials: true
 }));
