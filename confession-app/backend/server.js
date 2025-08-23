@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 
-app.get('/health', (req, res) => {
+app.get('/healthz', (req, res) => {
   res.status(200).send('ok');
 });
 
