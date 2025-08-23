@@ -84,10 +84,15 @@ const LandingPage = () => {
                   aria-label="Twitter/X"
                   className="text-gray-300 hover:text-gray-400 transition cursor-pointer"
                 >
-                  <svg className="w-7 h-7" viewBox="0 0 120 120" fill="currentColor">
-                    <path d="M86.4 33.6H74.88L60 54.24 45.12 33.6H33.6L54.24 60 33.6 86.4h11.52L60 65.76 
-        74.88 86.4H86.4L65.76 60 86.4 33.6Z"/>
-                  </svg>
+                  <svg
+  className="w-7 h-7"
+  viewBox="0 0 1200 1227"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M714.163 519.284L1160.89 0H1056.84L667.137 450.887L356.58 0H0L468.106 681.821L0 1226.96H104.055L515.385 746.646L843.42 1226.96H1200L714.137 519.284H714.163ZM569.213 686.602L521.7 617.153L141.869 79.667H306.082L611.412 517.043L658.925 586.492L1056.87 1150.56H892.661L569.213 686.628V686.602Z"/>
+</svg>
+
                 </a>
               </div>
 
