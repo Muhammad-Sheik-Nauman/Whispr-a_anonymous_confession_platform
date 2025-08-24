@@ -19,12 +19,10 @@ const confessionSchema = new mongoose.Schema({
     default: 0,
   },
   likedBy: {
-    type: String,
+    type: [String],
     required: true
   },
-  report:{
-
-  },
+  
   report: {
     type: [String],
     default: []
