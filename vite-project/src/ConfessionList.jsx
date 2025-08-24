@@ -7,7 +7,7 @@ import Highlighter from "react-highlight-words";
 const API =
     window.location.hostname === "localhost"
         ? "http://localhost:5000"
-        : "https://whispr-official.vercel.app";
+        : "https://whispr-a-anonymous-confession-platform-1.onrender.com";
 
 const ConfessionList = ({ refresh, ownerToken }) => {
     const [confessions, setConfessions] = useState([]);
