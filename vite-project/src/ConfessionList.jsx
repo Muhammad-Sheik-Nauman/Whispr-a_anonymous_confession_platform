@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { MoreVertical, ThumbsUp, Trash2 } from "lucide-react";
 import axios from 'axios';
 import Highlighter from "react-highlight-words";
 
@@ -6,6 +7,45 @@ import Highlighter from "react-highlight-words";
 
 const ConfessionList = ({ refresh, ownerToken }) => {
     const [confessions, setConfessions] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(null);
+
+    const handleLike = async (id) => {
+        try {
+            await axios.post(`https://whispr-a-anonymous-confession-platform.onrender.com/confessions/${id}/like`);
+            setConfessions((prev) =>
+                prev.map((c) => (c._id === id ? { ...c, likes: (c.likes || 0) + 1 } : c))
+            );
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    const handleReport = async (id) => {
+        try {
+            await axios.post(`https://whispr-a-anonymous-confession-platform.onrender.com/confessions/${id}/report`);
+            alert("Reported! If this confession gets 15+ reports, it will be auto-deleted.");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+    const handleEdit = async (id, oldContent) => {
+        const newText = prompt("Edit your confession:", oldContent);
+        if (!newText) return;
+        try {
+            await axios.put(`https://whispr-a-anonymous-confession-platform.onrender.com/confessions/${id}`, {
+                content: newText,
+                ownerToken
+            });
+            setConfessions((prev) =>
+                prev.map((c) => (c._id === id ? { ...c, content: newText } : c))
+            );
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const [search, setSearch] = useState("");
 
@@ -54,9 +94,37 @@ const ConfessionList = ({ refresh, ownerToken }) => {
                 ) : (
                     filteredConfessions.map((confession) => (
                         <div key={confession._id}
-                        className="bg-white border border-gray-200 shadow rounded-lg p-4 m-2 " >
-                            <p className='text-black mb-2 break-words'><Highlighter
+                            className="bg-white border border-gray-200 shadow rounded-lg p-4 m-2 relative" >
+                            {/* 3-dot menu */}
+                            <div className="absolute top-2 right-2">
+                                <button
+                                    onClick={() => setMenuOpen(menuOpen === confession._id ? null : confession._id)}
+                                    className="p-1 rounded-full hover:bg-gray-200"
+                                >
+                                    <MoreVertical className="w-5 h-5 text-gray-600" />
+                                </button>
+                                {menuOpen === confession._id && (
+                                    <div className="absolute right-0 mt-2 bg-gray-100 border border-gray-300 rounded-lg shadow-lg w-28 z-10">
+                                        {confession.ownerToken === ownerToken && (
+                                            <button
+                                                onClick={() => { handleEdit(confession._id, confession.content); setMenuOpen(null); }}
+                                                className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-200"
+                                            >
+                                                Edit
+                                            </button>
+                                        )}
+                                        <button
+                                            onClick={() => { handleReport(confession._id); setMenuOpen(null); }}
+                                            className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-200 text-red-500"
+                                        >
+                                            Report
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
 
+                            {/* content */}
+                            <p className='text-black mb-2 break-words'><Highlighter
                                 searchWords={[search]}
                                 autoEscape={true}
                                 textToHighlight={confession.content}
@@ -66,14 +134,26 @@ const ConfessionList = ({ refresh, ownerToken }) => {
                                 Posted: {new Date(confession.createdAt).toLocaleString()}
                             </small>
 
-                            {confession.ownerToken === ownerToken && (
-                                <button className='px-3 py-1 bg-red-500 text-sm text-white rounded-md shadow hover:bg-red-600 transition cursor-pointer'
-                                 onClick={() => handleDelete(confession._id)}>
-                                    delete
+                            {/* Like and Delete button */}
+                            <div className="flex items-center gap-4">
+                                <button
+                                    onClick={() => handleLike(confession._id)}
+                                    className="flex items-center gap-1 text-gray-600 hover:text-green-600"
+                                >
+                                    <ThumbsUp className="w-5 h-5" />
+                                    <span>{confession.likes || 0}</span>
                                 </button>
 
-
-                            )}
+                                {confession.ownerToken === ownerToken && (
+                                    <button
+                                        className="flex items-center gap-1 text-gray-600 hover:text-red-600"
+                                        onClick={() => handleDelete(confession._id)}
+                                    >
+                                        <Trash2 className="w-5 h-5" />
+                                        <span>Delete</span>
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     ))
                 )}
