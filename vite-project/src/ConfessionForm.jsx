@@ -13,7 +13,7 @@ const ConfessionForm = ({onRefresh, ownerToken}) => {
                 e.preventDefault();
                 try{
 
-                   await axios.post("https://whispr-a-anonymous-confession-platform-1.onrender.com/confessions",{content:text, ownerToken:ownerToken})
+                   await axios.post("https://whispr-a-anonymous-confession-platform.onrender.com/confessions",{content:text, ownerToken:ownerToken})
                     setText("");
                     onRefresh();
                 }catch(err){
